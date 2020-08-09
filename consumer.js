@@ -35,7 +35,7 @@ try {
 
     var buf = Buffer.from(base64str,'base64');
   
-    fs.writeFile(path.join(__dirname,filename), buf, function(error){
+    fs.writeFile(path.join(__dirname,'/images/',filename), buf, function(error){
       if(error){
         throw error;
       }else{
