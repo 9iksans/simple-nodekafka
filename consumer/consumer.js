@@ -1,15 +1,26 @@
 const kafka = require('kafka-node');
 const bp = require('body-parser');
-const config = require('./config');
 var buffer = require('buffer');
 var path = require('path');
 var fs = require('fs');
 var i = 1;
-try {
-  const Consumer = kafka.Consumer;
-  const client = new kafka.KafkaClient('localhost:2181');
 
-  
+const host = process.env.HOST;
+const port = process.env.PORT;
+const Consumer = kafka.Consumer;
+const client = new kafka.KafkaClient({kafkaHost: host+":"+port});
+  var topicsToCreate = [{
+    topic: 'image-action',
+    partitions: 1,
+    replicationFactor: 1
+  }];
+
+  client.createTopics(topicsToCreate, (error, result) => {
+
+  });
+
+try {
+
   let consumer = new Consumer(
     client,
     [{ topic: 'image-action', partition: 0 }],
@@ -26,9 +37,8 @@ try {
     console.log(
       'kafka-> ',
       message.value
-      
     );
-    decode_base64(message.value, 'cek'+ i++ +'.jpg'  );
+    //decode_base64(message.value, 'cek.jpg'  );
   })
 
   function decode_base64(base64str , filename){

@@ -1,0 +1,17 @@
+{
+  "name": "docker_web_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "main": "consumer.js",
+  "scripts": {
+    "start": "node consumer.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "kafka-node": "5.0.0",
+    "body-parser": "1.19.0",
+    "buffer": "5.6.0",
+    "path": "0.12.7",
+    "fs": "0.0.1-security"
+  }
+}
